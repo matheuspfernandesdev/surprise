@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #FAF5EE;
+    --foreground: #3B342B;
+    --card: #FFFDF9;
+    --card-foreground: #3B342B;
+    --primary: #B96B4A;
+    --primary-hover: #A2583B;
+    --primary-foreground: #FFF8F2;
+    --secondary: #7E8C6B;
+    --secondary-hover: #6B7958;
+    --secondary-foreground: #FFF8F2;
+    --muted: #F3EADD;
+    --muted-foreground: #8A7E70;
+    --accent: #F3EADD;
+    --accent-foreground: #3B342B;
+    --destructive: #B04A3F;
+    --destructive-foreground: #FFF8F2;
+    --border: #E7DCCB;
+    --input: #E7DCCB;
+    --ring: #B96B4A;
+    --radius: 0.875rem;
+    --gold: #DDA869;
+    --reserved-bg: #EFE7DA;
+    --reserved-fg: #B3A899;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .font-accent {
+    font-family: 'Dancing Script', cursive;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Animações do Dialog (Radix) */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@keyframes zoomIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes zoomOut {
+  from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  to { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
+}
+
+[data-state=open].animate-in { animation-fill-mode: both; }
+[data-state=closed].animate-out { animation-fill-mode: both; }
+.fade-in-0[data-state=open] { animation: fadeIn 150ms ease; }
+.fade-out-0[data-state=closed] { animation: fadeOut 150ms ease; }
+.zoom-in-95[data-state=open] { animation: zoomIn 200ms ease; }
+.zoom-out-95[data-state=closed] { animation: zoomOut 150ms ease; }
